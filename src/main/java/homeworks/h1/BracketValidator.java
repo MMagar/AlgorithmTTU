@@ -4,20 +4,21 @@ public class BracketValidator {
     char openingBracket = '(';
     char closingBracket = ')';
 
-    boolean areBracketsValid(String content) {
+    public boolean areBracketsValid(String content) {
         int openBrackets = 0;
         for (char c : content.toCharArray()) {
             if (c == openingBracket)
                 openBrackets++;
-            else if (c == closingBracket)
+            else if (c == closingBracket) {
                 openBrackets--;
-            if (openBrackets < 0)
-                return false;
+                if (openBrackets < 0)
+                    return false;
+            }
         }
         return openBrackets == 0;
     }
 
-    int positionOfInvalidBracket(String content) {
+    public int positionOfInvalidBracket(String content) {
         return positionOfInvalidBracketInSubPiece(0, content);
     }
 
