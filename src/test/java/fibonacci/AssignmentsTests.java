@@ -16,11 +16,11 @@ public class AssignmentsTests {
 
     @Test
     public void lineCalculatorShouldCalculateCorrectAmountOfLines() throws Exception {
-        assertEquals(1, assignments.numberOfCodeRowsExecutedForRecursiveFibonacciNumber(1));
-        assertEquals(1, assignments.numberOfCodeRowsExecutedForRecursiveFibonacciNumber(2));
-        assertEquals(4, assignments.numberOfCodeRowsExecutedForRecursiveFibonacciNumber(3));
-        assertEquals(7, assignments.numberOfCodeRowsExecutedForRecursiveFibonacciNumber(4));
-        assertEquals(13, assignments.numberOfCodeRowsExecutedForRecursiveFibonacciNumber(5));
+        assertEquals(1, assignments.numberOfCodeRowsExecutedForRecursiveFibonacciNumber(1).intValue());
+        assertEquals(1, assignments.numberOfCodeRowsExecutedForRecursiveFibonacciNumber(2).intValue());
+        assertEquals(4, assignments.numberOfCodeRowsExecutedForRecursiveFibonacciNumber(3).intValue());
+        assertEquals(7, assignments.numberOfCodeRowsExecutedForRecursiveFibonacciNumber(4).intValue());
+        assertEquals(13, assignments.numberOfCodeRowsExecutedForRecursiveFibonacciNumber(5).intValue());
     }
 
     @Test

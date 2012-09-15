@@ -1,27 +1,38 @@
 package fibonacci;
 
+import java.math.BigInteger;
 import java.util.Date;
 
 public class Assignments {
+    private static final int MILLISECONDS_IN_A_YEAR = 1000 * 60 * 60 * 24 * 365;
     private FibonacciCalculator calculator;
 
-    public int numberOfCodeRowsExecutedForRecursiveFibonacciNumber(int number) {
-        int twoNumbersAgo = 1;
-        int oneNumberAgo = 1;
-        int currentLinesOfCode = 1;
+
+    public BigInteger numberOfCodeRowsExecutedForRecursiveFibonacciNumber(int number) {
+        BigInteger twoNumbersAgo = new BigInteger("1");
+        BigInteger oneNumberAgo = new BigInteger("1");
+        BigInteger currentLinesOfCode = new BigInteger("1");
         for (int i = 3; i <= number; i++) {
-            currentLinesOfCode = 2 + oneNumberAgo + twoNumbersAgo;
-            twoNumbersAgo = oneNumberAgo;
-            oneNumberAgo = currentLinesOfCode;
+            currentLinesOfCode = new BigInteger("2").add(oneNumberAgo).add(twoNumbersAgo);
+            twoNumbersAgo = new BigInteger(oneNumberAgo.toString());
+            oneNumberAgo = new BigInteger(currentLinesOfCode.toString());
         }
         return currentLinesOfCode;
     }
 
-    public double numberOfYearsToCalculateFibonacciNumberRecursively(int number) {
-        int maximumNumberWithinTenSeconds = maximumNumberRecursivelyCalculableWithin(10 * 1000);
-        int linesOfCodeExecuted = numberOfCodeRowsExecutedForRecursiveFibonacciNumber(maximumNumberWithinTenSeconds);
-        System.out.println("Lines:" + linesOfCodeExecuted + " number:" + maximumNumberWithinTenSeconds);
-        return 0;
+    public BigInteger numberOfYearsToCalculateFibonacciNumberRecursively(int number) {
+        BigInteger linesExecutedPerMillisecond = linesMachineCanExecutePerMillisecond();
+        BigInteger linesToCalculateProvidedNumber = numberOfCodeRowsExecutedForRecursiveFibonacciNumber(number);
+        BigInteger millisecondsToCalculateProvidedNumber = linesToCalculateProvidedNumber.divide(linesExecutedPerMillisecond);
+        BigInteger yearsToCalculateProvidedNumber = millisecondsToCalculateProvidedNumber.divide(new BigInteger(MILLISECONDS_IN_A_YEAR + ""));
+        return yearsToCalculateProvidedNumber;
+    }
+
+    public BigInteger linesMachineCanExecutePerMillisecond() {
+        int timeToSpendMeasuring = 1000 * 10;
+        int largestNumberFound = maximumNumberRecursivelyCalculableWithin(timeToSpendMeasuring);
+        BigInteger linesExecuted = numberOfCodeRowsExecutedForRecursiveFibonacciNumber(largestNumberFound);
+        return linesExecuted.divide(new BigInteger(timeToSpendMeasuring + ""));
     }
 
     public int maximumNumberRecursivelyCalculableWithin(long maximumMilliseconds) {
