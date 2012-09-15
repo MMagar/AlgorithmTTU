@@ -29,22 +29,4 @@ public class FibonacciCalculatorTests {
         assertEquals(89, calculator.iterative(11));
     }
 
-    @Test
-    public void testRecursiveTime() throws Exception {
-        calculator.maximumNumberRecursivelyCalculableWithin(2 * 1000);
-    }
-
-    @Test
-    public void lineCalculatorShouldCalulateCorrectAmmountOfLines() throws Exception {
-        assertEquals(1, calculator.numberOfCodeRowsExecutedForRecursiveFibonacciNumber(1));
-        assertEquals(1, calculator.numberOfCodeRowsExecutedForRecursiveFibonacciNumber(2));
-        assertEquals(4, calculator.numberOfCodeRowsExecutedForRecursiveFibonacciNumber(3));
-        assertEquals(7, calculator.numberOfCodeRowsExecutedForRecursiveFibonacciNumber(4));
-        assertEquals(13, calculator.numberOfCodeRowsExecutedForRecursiveFibonacciNumber(5));
-    }
-
-    @Test
-    public void howLongToCalculateFibonacci400() throws Exception {
-        calculator.numberOfYearsToCalculateFibonacciNumberRecursively(400);
-    }
 }
