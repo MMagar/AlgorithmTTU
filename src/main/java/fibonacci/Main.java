@@ -4,37 +4,36 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * Martin Mägar
+ * 073819
+ * https://github.com/MMagar/AlgorithmTTU
+ */
 public class Main {
 
-
     public static void main(String[] args) {
-        System.out.println("jej");
-        String path = "src/main/java/fibonacci/";
-        BufferedReader reader;
-        String line;
-        ArrayList<Integer> inputNumbers = new ArrayList<Integer>();
-        try {
+        FileUtil fileUtil = new FileUtil("src/main/java/fibonacci/", "input.in");
+        FibonacciCalculator calculator = new FibonacciCalculator();
+        Assignments assignments = new Assignments();
+        assignments.setCalculator(calculator);
 
-            reader = new BufferedReader(new FileReader(path + "input.in"));
-            while ((line = reader.readLine()) != null) {
-                Integer number = Integer.parseInt(line);
-                inputNumbers.add(number);
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+        try {
+            ArrayList<Integer> inputNumbers = fileUtil.readInputNumbers();
+
+            ArrayList<Integer> outputNumbers = calculator.recursiveNumbers(inputNumbers);
+            fileUtil.writeResultsToFile(outputNumbers, "recursive.out");
+
+            outputNumbers = calculator.iterativeNumbers(inputNumbers);
+            fileUtil.writeResultsToFile(outputNumbers, "iterative.out");
+
+            System.out.println("Maximum number calculable in 10 seconds...");
+            System.out.println(assignments.maximumNumberRecursivelyCalculableWithin(1000 * 10));
+            System.out.println("Calculating 400th fibonacci number takes...");
+            System.out.println(assignments.numberOfYearsToCalculateFibonacciNumberRecursively(400) + " years.");
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Exception while reading/writing file. " + e);
         }
-        System.out.println(Arrays.toString(inputNumbers.toArray()));
 
-        try {
-            FileWriter fileWriter = new FileWriter(path + "output.out");
-            BufferedWriter writer = new BufferedWriter(fileWriter);
-            writer.write("Hello Java");
-            writer.close();
-        } catch (Exception e) {//Catch exception if any
-            System.err.println("Error: " + e.getMessage());
-        }
     }
 }
 

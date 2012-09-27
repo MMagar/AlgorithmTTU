@@ -45,8 +45,6 @@ public class Assignments {
             end = new Date();
             timeSpent = end.getTime() - start.getTime();
         }
-        System.out.println("Within " + (new Float(maximumMilliseconds) / 1000) +
-                " seconds the recursive algorithm calculated " + (lastFoundNumber - 1) + " fibonacci numbers.");
         return lastFoundNumber - 1;
     }
 

@@ -1,5 +1,7 @@
 package fibonacci;
 
+import java.util.ArrayList;
+
 public class FibonacciCalculator {
 
     public int recursive(int number) {
@@ -18,5 +20,21 @@ public class FibonacciCalculator {
             oneNumberAgo = lastFibonacciNumber;
         }
         return lastFibonacciNumber;
+    }
+
+    public ArrayList<Integer> recursiveNumbers(ArrayList<Integer> inputNumbers) {
+        ArrayList<Integer> result = new ArrayList<Integer>();
+        for(Integer number : inputNumbers) {
+            result.add(recursive(number));
+        }
+        return result;
+    }
+
+    public ArrayList<Integer> iterativeNumbers(ArrayList<Integer> inputNumbers) {
+        ArrayList<Integer> result = new ArrayList<Integer>();
+        for(Integer number : inputNumbers) {
+            result.add(recursive(number));
+        }
+        return result;
     }
 }
