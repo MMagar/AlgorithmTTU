@@ -1,11 +1,11 @@
 package datastructures;
 
 public class DynamicArray {
-    int[] array;
+    Integer[] array;
     private int freeIndex = 0;
 
     public DynamicArray(int size) {
-        array = new int[size];
+        array = new Integer[size];
     }
 
     public void add(int number) {
@@ -16,7 +16,7 @@ public class DynamicArray {
     }
 
     private void increaseArray() {
-        int[] biggerArray = new int[array.length * 2];
+        Integer[] biggerArray = new Integer[array.length * 2];
         for (int i = 0; i < array.length; i++) {
             biggerArray[i] = array[i];
         }
@@ -32,7 +32,7 @@ public class DynamicArray {
     }
 
     private void decreaseSize() {
-        int[] smallerArray = new int[array.length / 2];
+        Integer[] smallerArray = new Integer[array.length / 2];
         for (int i = 0; i < freeIndex; i++) {
             smallerArray[i] = array[i];
         }
@@ -40,14 +40,19 @@ public class DynamicArray {
     }
 
     public int get(int index) {
-        if (index >= freeIndex)
-            throw new ArrayIndexOutOfBoundsException();
+        return getObject(index);
+    }
+
+    public Integer getObject(int index) {
         return array[index];
     }
 
     public void put(int index, int value) {
         if (index >= freeIndex)
-            throw new ArrayIndexOutOfBoundsException();
+            freeIndex = index+1;
+        while (freeIndex > array.length) {
+            increaseArray();
+        }
         array[index] = value;
     }
 

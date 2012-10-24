@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 public class DynamicArrayTests {
     DynamicArray array;
@@ -64,9 +65,14 @@ public class DynamicArrayTests {
         array.add(4);
     }
 
-    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    @Test(expected = NullPointerException.class)
     public void getShouldThrowExceptionWhenOutOfBounds() throws Exception {
-        array.get(size - 1);
+        array.get(0);
+    }
+
+    @Test
+    public void getObjectShouldReturnNullIfValueNotSet() throws Exception {
+        assertNull(array.getObject(0));
     }
 
     @Test
@@ -80,11 +86,12 @@ public class DynamicArrayTests {
         assertEquals(4, array.get(1));
     }
 
-    @Test(expected = ArrayIndexOutOfBoundsException.class)
-    public void putShouldThrowExceptionIfOutOfBounds() throws Exception {
-        array.add(1);
-
-        array.put(1, 2);
+    @Test
+    public void putShouldDynamicallyIncreaseArraySize() throws Exception {
+        array.put(size, 2);
+        assertEquals(2, array.get(size));
+        array.add(3);
+        assertEquals(3, array.remove());
     }
 
     @Test
