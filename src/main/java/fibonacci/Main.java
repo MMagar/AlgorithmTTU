@@ -1,8 +1,9 @@
 package fibonacci;
 
+import util.FileUtil;
+
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * Martin Mägar
