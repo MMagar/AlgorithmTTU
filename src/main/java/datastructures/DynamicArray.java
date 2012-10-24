@@ -44,10 +44,16 @@ public class DynamicArray {
     }
 
     public Integer getObject(int index) {
-        return array[index];
+        Integer result;
+        try{
+            result = array[index];
+        }catch (ArrayIndexOutOfBoundsException e){
+            result = null;
+        }
+        return result;
     }
 
-    public void put(int index, int value) {
+    public void put(int index, Integer value) {
         if (index >= freeIndex)
             freeIndex = index+1;
         while (freeIndex > array.length) {
