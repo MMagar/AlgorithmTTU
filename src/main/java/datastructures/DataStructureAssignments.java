@@ -5,6 +5,11 @@ import util.FileUtil;
 import java.io.IOException;
 import java.util.ArrayList;
 
+
+/**
+ * Class that implements the required assignments by reading input from a file
+ * and then completes tasks using the data structures
+ */
 public class DataStructureAssignments {
     private Stack stack = new Stack();
     private BinaryHeap heap = new BinaryHeap();
@@ -35,7 +40,23 @@ public class DataStructureAssignments {
             clearStackToArray();
             clearHeapToArray();
         } else if (number < 0) {
+            int absoluteNumber = Math.abs(number);
+            removeElementsFromStackToArray(absoluteNumber);
+            removeElementsFromHeapToArray(absoluteNumber);
+        }
+    }
 
+    private void removeElementsFromStackToArray(int numberOfElementsToRemove) {
+        while (!stack.isEmpty() && numberOfElementsToRemove > 0) {
+            outputMagNumbers.add(stack.pop());
+            numberOfElementsToRemove--;
+        }
+    }
+
+    private void removeElementsFromHeapToArray(int numberOfElementsToRemove) {
+        while (!heap.isEmpty() && numberOfElementsToRemove > 0) {
+            outputPriNumbers.add(heap.dequeue());
+            numberOfElementsToRemove--;
         }
     }
 

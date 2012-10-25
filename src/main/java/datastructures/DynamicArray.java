@@ -43,6 +43,12 @@ public class DynamicArray {
         return getObject(index);
     }
 
+    /**
+     * Get method that can return null if value is not set.
+     * Needed for binary heap implementation.
+     * @param index
+     * @return
+     */
     public Integer getObject(int index) {
         Integer result;
         try{

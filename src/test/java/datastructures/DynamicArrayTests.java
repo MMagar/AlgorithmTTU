@@ -63,6 +63,13 @@ public class DynamicArrayTests {
         array.add(2);
         array.add(3);
         array.add(4);
+        assertEquals(8, array.array.length);
+
+        array.remove();
+        array.remove();
+        array.remove();
+        array.remove();
+        assertEquals(4, array.array.length);
     }
 
     @Test(expected = NullPointerException.class)

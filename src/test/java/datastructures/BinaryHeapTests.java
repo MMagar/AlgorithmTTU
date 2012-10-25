@@ -3,6 +3,8 @@ package datastructures;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -49,5 +51,37 @@ public class BinaryHeapTests {
         heap.dequeue();
         heap.dequeue();
         assertTrue(heap.isEmpty());
+    }
+
+    @Test
+    public void complicatedTest() throws Exception {
+        ArrayList<Integer> result = new ArrayList<Integer>();
+        for (int i = 1; i <= 20; i++) {
+            heap.enqueue(i);
+        }
+        for (int i = 1; i <= 20; i++) { //heap should be 1 ... 20
+            assertEquals(i, heap.dequeue());
+        }
+        for (int i = 1; i <= 20; i++) {
+            heap.enqueue(i);
+        }
+        for (int i = 1; i <= 10; i++) { //heap should be 1 ... 20
+            assertEquals(i, heap.dequeue());
+        }
+        for (int i = 11; i <= 20; i++) { //heap should be 11 ... 20
+            heap.enqueue(i);
+        }
+        for (int i = 11; i <= 20; i++) {  //heap should be duplicates 11,11,12,12 ... 20,20
+            assertEquals(i, heap.dequeue());
+            assertEquals(i, heap.dequeue());
+        }
+        for (int i = 20; i >= 1; i--) {
+            heap.enqueue(i);
+        }
+        for (int i = 1; i <= 20; i++) { //heap should be 1 ... 20
+            assertEquals(i, heap.dequeue());
+        }
+        heap.enqueue(100);
+        heap.enqueue(200);
     }
 }

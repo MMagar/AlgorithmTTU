@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) {
-        FileUtil fileUtil = new FileUtil("src/main/java/datastructures/", "input.in");
+        FileUtil fileUtil = new FileUtil("src/main/java/datastructures/", "input2.in");
         DataStructureAssignments assignments = new DataStructureAssignments(fileUtil);
         try {
             assignments.readInput();
