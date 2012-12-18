@@ -46,14 +46,15 @@ public class DynamicArray {
     /**
      * Get method that can return null if value is not set.
      * Needed for binary heap implementation.
+     *
      * @param index
      * @return
      */
     public Integer getObject(int index) {
         Integer result;
-        try{
+        try {
             result = array[index];
-        }catch (ArrayIndexOutOfBoundsException e){
+        } catch (ArrayIndexOutOfBoundsException e) {
             result = null;
         }
         return result;
@@ -61,7 +62,7 @@ public class DynamicArray {
 
     public void put(int index, Integer value) {
         if (index >= freeIndex)
-            freeIndex = index+1;
+            freeIndex = index + 1;
         while (freeIndex > array.length) {
             increaseArray();
         }

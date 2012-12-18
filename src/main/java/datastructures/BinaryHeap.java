@@ -13,9 +13,9 @@ public class BinaryHeap {
 
     private void enqueueToNode(int indexInArray, int value) {
         Integer nodeValue = array.getObject(indexInArray);
-        if(nodeValue == null){
+        if (nodeValue == null) {
             array.put(indexInArray, value);
-        } else if(value < nodeValue) {
+        } else if (value < nodeValue) {
             enqueueToLeftNodeOf(indexInArray, value);
         } else {
             enqueueToRightNodeOf(indexInArray, value);
@@ -36,7 +36,7 @@ public class BinaryHeap {
 
     private int dequeueMinOfNode(int indexInArray) {
         int indexOfLeftNode = getIndexOfLeft(indexInArray);
-        if(array.getObject(indexOfLeftNode) == null) {
+        if (array.getObject(indexOfLeftNode) == null) {
             return removeNodeAt(indexInArray);
         } else {
             return dequeueMinOfNode(indexOfLeftNode);
@@ -47,7 +47,7 @@ public class BinaryHeap {
         Integer nodeValue = array.getObject(indexInArray);
         Integer indexOfRightNode = getIndexOfRight(indexInArray);
         Integer valueOnRight = array.getObject(indexOfRightNode);
-        if(valueOnRight == null) {
+        if (valueOnRight == null) {
             array.put(indexInArray, null);
         } else {
             array.put(indexInArray, dequeueMinOfNode(indexOfRightNode));
@@ -56,11 +56,11 @@ public class BinaryHeap {
     }
 
     private int getIndexOfLeft(int head) {
-        return 2*head;
+        return 2 * head;
     }
 
     private int getIndexOfRight(int head) {
-        return 2*head + 1;
+        return 2 * head + 1;
     }
 
     public boolean isEmpty() {

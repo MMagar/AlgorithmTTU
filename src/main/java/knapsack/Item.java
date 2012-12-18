@@ -1,12 +1,12 @@
 package knapsack;
 
-public class Item implements Comparable{
+public class Item implements Comparable {
     private int price;
     private int weight;
     private float value;
 
     public Item() {
-        this(1,1);
+        this(1, 1);
     }
 
     public Item(int price, int weight) {
@@ -47,7 +47,7 @@ public class Item implements Comparable{
 
     @Override
     public int compareTo(Object o) {
-        if(o instanceof Item) {
+        if (o instanceof Item) {
             Item otherItem = (Item) o;
             return new Float(getValue()).compareTo(otherItem.getValue());
         } else {

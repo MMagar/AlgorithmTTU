@@ -24,7 +24,7 @@ public class FibonacciCalculator {
 
     public ArrayList<Integer> recursiveNumbers(ArrayList<Integer> inputNumbers) {
         ArrayList<Integer> result = new ArrayList<Integer>();
-        for(Integer number : inputNumbers) {
+        for (Integer number : inputNumbers) {
             result.add(recursive(number));
         }
         return result;
@@ -32,7 +32,7 @@ public class FibonacciCalculator {
 
     public ArrayList<Integer> iterativeNumbers(ArrayList<Integer> inputNumbers) {
         ArrayList<Integer> result = new ArrayList<Integer>();
-        for(Integer number : inputNumbers) {
+        for (Integer number : inputNumbers) {
             result.add(recursive(number));
         }
         return result;

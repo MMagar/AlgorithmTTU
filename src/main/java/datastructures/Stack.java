@@ -41,7 +41,6 @@ public class Stack {
     }
 
 
-
     public int[] toArray() {
         int[] result = new int[size];
         StackNode node = firstNode;

@@ -56,7 +56,7 @@ public class StackTests {
         stack.push(3);
         stack.push(2);
         stack.push(1);
-        int[] arrayExpected = {1,2,3};
+        int[] arrayExpected = {1, 2, 3};
         int[] arrayActual = stack.toArray();
         for (int i = 0; i < arrayExpected.length; i++) {
             assertEquals(arrayExpected[i], arrayActual[i]);

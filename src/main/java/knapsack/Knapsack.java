@@ -18,7 +18,7 @@ public class Knapsack {
     }
 
     public boolean isOverWeightLimit() {
-        return  getTotalWeight() > maxWeight;
+        return getTotalWeight() > maxWeight;
     }
 
     public int getTotalPrice() {

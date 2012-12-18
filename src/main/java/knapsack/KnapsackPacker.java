@@ -1,8 +1,6 @@
 package knapsack;
 
 import datastructures.ComparableObjectHeap;
-import datastructures.DynamicObjectArray;
-import datastructures.Stack;
 
 public class KnapsackPacker {
     private int maxWeight;
@@ -26,26 +24,6 @@ public class KnapsackPacker {
             heap.enqueue(arrayOfItems[i]);
         }
         return toReverseArray(heap, arrayOfItems.length);
-    }
-
-    private int indexOfNextLeastValuableItem(Item[] availableItems, Stack sortedIndexes) {
-        float lastValue = availableItems[sortedIndexes.peekAt(0)].getValue();
-        float candidateWithLeastValue;
-
-        for (int i = availableItems.length; i >= 0; i--) {
-            if (!sortedIndexes.contains(i)) {
-            }
-        }
-        return 1;
-    }
-
-
-    public DynamicObjectArray<Item> toArray(ComparableObjectHeap<Item> heap, int size) {
-        DynamicObjectArray<Item> result = new DynamicObjectArray<Item>(size);
-        for (int i = 0; i < size; i++) {
-            result.add(heap.dequeue());
-        }
-        return result;
     }
 
     public Item[] toReverseArray(ComparableObjectHeap<Item> heap, int size) {

@@ -18,8 +18,9 @@ public class FileUtil {
         BufferedReader reader = null;
         try {
             reader = new BufferedReader(new FileReader(path + fileIn));
-        } catch (FileNotFoundException ignored) {}
-        if(reader == null) {
+        } catch (FileNotFoundException ignored) {
+        }
+        if (reader == null) {
             reader = new BufferedReader(new FileReader(fileIn));
             path = "";
         }

@@ -1,6 +1,7 @@
 package knapsack;
 
 import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 public class ItemTests {
@@ -15,8 +16,8 @@ public class ItemTests {
 
     @Test
     public void itemValueShouldBeComparable() throws Exception {
-        Item moreValuableItem = new Item(2,2);
-        Item lessValuableItem = new Item(1,2);
+        Item moreValuableItem = new Item(2, 2);
+        Item lessValuableItem = new Item(1, 2);
 
         assertTrue(moreValuableItem.isMoreValuableThan(lessValuableItem));
         assertFalse(lessValuableItem.isMoreValuableThan(moreValuableItem));

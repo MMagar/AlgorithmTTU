@@ -38,7 +38,7 @@ public class DynamicObjectArray<T> {
     }
 
     public T get(int index) {
-        if(index >= freeIndex)
+        if (index >= freeIndex)
             throw new IndexOutOfBoundsException("Out of array bounds");
         return getObject(index);
     }
