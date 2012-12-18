@@ -1,7 +1,7 @@
 package datastructures;
 
 public class DynamicObjectArray<T> {
-    private Object[] array;
+    Object[] array;
     private int freeIndex = 0;
 
     public DynamicObjectArray(int size) {
