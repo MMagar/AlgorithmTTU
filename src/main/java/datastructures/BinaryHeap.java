@@ -1,7 +1,7 @@
 package datastructures;
 
 public class BinaryHeap {
-    DynamicArray array;
+    private DynamicArray array;
 
     public BinaryHeap() {
         array = new DynamicArray(8);
