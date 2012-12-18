@@ -3,9 +3,7 @@ package datastructures;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class StackTests {
     Stack stack;
@@ -38,5 +36,30 @@ public class StackTests {
 
         stack.pop();
         assertTrue(stack.isEmpty());
+    }
+
+    @Test
+    public void containsNumberTest() throws Exception {
+        assertFalse(stack.contains(1));
+
+        stack.push(1);
+        stack.push(3);
+        stack.push(5);
+
+        assertTrue(stack.contains(1));
+        assertTrue(stack.contains(3));
+        assertTrue(stack.contains(5));
+    }
+
+    @Test
+    public void toArrayTest() throws Exception {
+        stack.push(3);
+        stack.push(2);
+        stack.push(1);
+        int[] arrayExpected = {1,2,3};
+        int[] arrayActual = stack.toArray();
+        for (int i = 0; i < arrayExpected.length; i++) {
+            assertEquals(arrayExpected[i], arrayActual[i]);
+        }
     }
 }

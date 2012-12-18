@@ -1,6 +1,7 @@
 package fibonacci;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -23,11 +24,13 @@ public class AssignmentsTests {
         assertEquals(13, assignments.numberOfCodeRowsExecutedForRecursiveFibonacciNumber(5).intValue());
     }
 
+    @Ignore //ignored to save time
     @Test
     public void testRecursiveTime() throws Exception {
         assignments.maximumNumberRecursivelyCalculableWithin(2 * 1000);
     }
 
+    @Ignore //ignored to save time
     @Test
     public void howLongToCalculateFibonacci400() throws Exception {
         assignments.numberOfYearsToCalculateFibonacciNumberRecursively(400);
