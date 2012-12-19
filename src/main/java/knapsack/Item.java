@@ -16,7 +16,7 @@ public class Item implements Comparable {
     }
 
     private void calculateValue() {
-        value = price / weight;
+        value = new Float(price) / new Float(weight);
     }
 
     public boolean isMoreValuableThan(Item otherItem) {
@@ -53,5 +53,9 @@ public class Item implements Comparable {
         } else {
             return 0;
         }
+    }
+
+    public String toString() {
+        return "Value:" + getValue() + " Price:" + getPrice() + " Weight:" + getWeight();
     }
 }

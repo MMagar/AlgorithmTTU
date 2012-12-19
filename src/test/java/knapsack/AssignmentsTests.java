@@ -23,16 +23,16 @@ public class AssignmentsTests {
 
     @Test
     public void test100() throws Exception {
-        fileUtil.setFileName("100");
+        fileUtil.setFileName("15");
 
         assignments.solve();
 
-        compareExpectedWithActualOutput("100");
+        compareExpectedWithActualOutput("15");
     }
 
     private void compareExpectedWithActualOutput(String fileName) throws IOException {
         File expectedFile = new File(path + "/expected/" + fileName + ".out");
-        File actualFile = new File(path + "/out/" + fileName + ".out");
+        File actualFile = new File(path + "/output/" + fileName + ".out");
         assertEquals(FileUtils.readFileToString(expectedFile), FileUtils.readFileToString(actualFile));
     }
 }

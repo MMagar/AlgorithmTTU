@@ -4,6 +4,8 @@ import datastructures.ComparableObjectHeap;
 import knapsack.Item;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class ItemFileUtil {
     private String path;
@@ -50,13 +52,21 @@ public class ItemFileUtil {
     Item[] readAndSortItemsBasedOnValue(BufferedReader reader) throws IOException {
         String line;
         ComparableObjectHeap<Item> heap = new ComparableObjectHeap<Item>();
+        ArrayList<Item> items = new ArrayList<Item>();
         while ((line = reader.readLine()) != null) {
             String[] parts = line.split(" ");
             int price = Integer.parseInt(parts[0]);
             int weight = Integer.parseInt(parts[1]);
-            heap.enqueue(new Item(price, weight));
+            items.add(new Item(price, weight));
         }
-        return toReverseArray(heap);
+        Collections.sort(items);
+        Collections.reverse(items);
+        Item[] result = new Item[items.size()];
+        System.out.println("finished reading file and sorting.");
+        for (Item item : items) {
+            System.out.println(item.toString());
+        }
+        return items.toArray(result);
     }
 
     public void writeResultsToFile(int totalPrice, int totalWeight, Item[] items) throws IOException {
