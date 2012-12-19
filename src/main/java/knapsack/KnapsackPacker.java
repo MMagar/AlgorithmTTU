@@ -1,7 +1,5 @@
 package knapsack;
 
-import datastructures.ComparableObjectHeap;
-
 import java.util.Arrays;
 
 public class KnapsackPacker {
@@ -57,24 +55,8 @@ public class KnapsackPacker {
         }
     }
 
-    public void setAvailableItems(Item[] availableItems) {
-        this.availableItems = sortAvailableItemsBasedOnValue(availableItems);
-    }
-
-    private Item[] sortAvailableItemsBasedOnValue(Item[] arrayOfItems) {
-        ComparableObjectHeap<Item> heap = new ComparableObjectHeap<Item>(arrayOfItems.length);
-        for (int i = arrayOfItems.length - 1; i >= 0; i--) {
-            heap.enqueue(arrayOfItems[i]);
-        }
-        return toReverseArray(heap, arrayOfItems.length);
-    }
-
-    public Item[] toReverseArray(ComparableObjectHeap<Item> heap, int size) {
-        Item[] result = new Item[size];
-        for (int i = size - 1; i >= 0; i--) {
-            result[i] = heap.dequeue();
-        }
-        return result;
+    public void setAvailableItems(Item[] sortedItemsBasedOnValue) {
+        this.availableItems = sortedItemsBasedOnValue;
     }
 
     public void setMaxWeight(int maxWeight) {

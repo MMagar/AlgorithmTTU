@@ -14,21 +14,6 @@ public class KnapsackPackerTests {
     }
 
     @Test
-    public void sortStartingItems() throws Exception {
-        packer.setMaxWeight(10);
-        Item leastValuable = new Item(1, 1);
-        Item middleValuable = new Item(2, 1);
-        Item mostValuable = new Item(3, 1);
-        Item[] unSortedItems = {middleValuable, leastValuable, mostValuable};
-
-        packer.setAvailableItems(unSortedItems);
-
-        assertEquals(mostValuable, packer.availableItems[0]);
-        assertEquals(middleValuable, packer.availableItems[1]);
-        assertEquals(leastValuable, packer.availableItems[2]);
-    }
-
-    @Test
     public void findEasySolution() throws Exception {
         packer.setMaxWeight(10);
         Item valuableItem = new Item(5,5);

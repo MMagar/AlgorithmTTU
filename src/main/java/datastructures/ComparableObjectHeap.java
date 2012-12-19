@@ -2,6 +2,7 @@ package datastructures;
 
 public class ComparableObjectHeap<T extends Comparable> {
     private DynamicObjectArray<T> array;
+    private int size = 0;
 
     public ComparableObjectHeap() {
         array = new DynamicObjectArray<T>(8);
@@ -12,6 +13,7 @@ public class ComparableObjectHeap<T extends Comparable> {
     }
 
     public void enqueue(T x) {
+        size++;
         enqueueToNode(1, x);
     }
 
@@ -35,6 +37,7 @@ public class ComparableObjectHeap<T extends Comparable> {
     }
 
     public T dequeue() {
+        size--;
         return dequeueMinOfNode(1);
     }
 
@@ -69,6 +72,10 @@ public class ComparableObjectHeap<T extends Comparable> {
 
     public boolean isEmpty() {
         return array.getObject(1) == null;
+    }
+
+    public int getSize() {
+        return size;
     }
 
 }
