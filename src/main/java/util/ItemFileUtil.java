@@ -4,11 +4,11 @@ import datastructures.ComparableObjectHeap;
 import knapsack.Item;
 
 import java.io.*;
-import java.util.ArrayList;
 
 public class ItemFileUtil {
     private String path;
     private String fileIn;
+    private String fileOut;
     private int maxWeight;
     private Item[] items;
 
@@ -52,11 +52,12 @@ public class ItemFileUtil {
         return toReverseArray(heap);
     }
 
-    public void writeResultsToFile(ArrayList<Integer> numbers, String fileOut) throws IOException {
+    public void writeResultsToFile(int totalPrice, int totalWeight, Item[] items) throws IOException {
         FileWriter fileWriter = new FileWriter(path + fileOut);
         BufferedWriter writer = new BufferedWriter(fileWriter);
-        for (Integer number : numbers) {
-            writer.write(number + "\n");
+        writer.write(totalPrice + " " + totalWeight + "\n");
+        for (Item item : items) {
+            writer.write(item.getPrice() + " " + item.getWeight()+ "\n");
         }
         writer.close();
         System.out.println("Results saved to file: " + fileOut);
@@ -76,6 +77,14 @@ public class ItemFileUtil {
 
     public void setFileIn(String fileIn) {
         this.fileIn = fileIn;
+    }
+
+    public void setFileOut(String fileOut) {
+        this.fileOut = fileOut;
+    }
+
+    public File getFileOut() {
+        return new File(path+fileOut);
     }
 
     public int getMaxWeight() {

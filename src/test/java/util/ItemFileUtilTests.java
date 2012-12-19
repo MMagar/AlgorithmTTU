@@ -2,6 +2,7 @@ package util;
 
 import datastructures.ComparableObjectHeap;
 import knapsack.Item;
+import org.apache.commons.io.FileUtils;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -50,5 +51,16 @@ public class ItemFileUtilTests {
         assertEquals(5, sortedItems[1].getWeight());
         assertEquals(2, sortedItems[2].getPrice());
         assertEquals(3, sortedItems[2].getWeight());
+    }
+
+    @Test
+    public void writeResultsToFile() throws Exception {
+        util.setFileOut("knapsackOutput.out");
+        Item[] items = {new Item(2,3), new Item(4,5)};
+
+        util.writeResultsToFile(10, 12, items);
+
+        String expectedContent = "10 12\n2 3\n4 5\n";
+        assertEquals(expectedContent, FileUtils.readFileToString(util.getFileOut()));
     }
 }
