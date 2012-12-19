@@ -40,8 +40,8 @@ public class DynamicObjectArrayTests {
         array.add(0);
         array.add(1);
 
-        assertEquals(new Integer(1), array.remove());
-        assertEquals(new Integer(0), array.remove());
+        assertEquals(new Integer(1), array.removeReturnLast());
+        assertEquals(new Integer(0), array.removeReturnLast());
     }
 
     @Test
@@ -51,7 +51,7 @@ public class DynamicObjectArrayTests {
         }
         assertEquals(size * 2, array.array.length);
         for (int i = size; i >= 0; i--) {
-            assertEquals(new Integer(i), array.remove());
+            assertEquals(new Integer(i), array.removeReturnLast());
         }
         assertEquals(size, array.array.length);
     }
@@ -65,10 +65,10 @@ public class DynamicObjectArrayTests {
         array.add(4);
         assertEquals(8, array.array.length);
 
-        array.remove();
-        array.remove();
-        array.remove();
-        array.remove();
+        array.removeReturnLast();
+        array.removeReturnLast();
+        array.removeReturnLast();
+        array.removeReturnLast();
         assertEquals(4, array.array.length);
     }
 
@@ -98,7 +98,7 @@ public class DynamicObjectArrayTests {
         array.put(size, 2);
         assertEquals(new Integer(2), array.get(size));
         array.add(3);
-        assertEquals(new Integer(3), array.remove());
+        assertEquals(new Integer(3), array.removeReturnLast());
     }
 
     @Test
@@ -111,10 +111,10 @@ public class DynamicObjectArrayTests {
         array.add(23);
         assertEquals(2, array.length());
 
-        array.remove();
+        array.removeReturnLast();
         assertEquals(1, array.length());
 
-        array.remove();
+        array.removeReturnLast();
         assertEquals(0, array.length());
     }
 }

@@ -1,11 +1,19 @@
 package datastructures;
 
-public class DynamicObjectArray<T> {
+import java.util.Iterator;
+
+public class DynamicObjectArray<T> implements Iterable<T>, Iterator<T> {
     Object[] array;
     private int freeIndex = 0;
+    private int iteratorCounter = 0;
 
     public DynamicObjectArray(int size) {
         array = new Object[size];
+    }
+
+    public DynamicObjectArray(T[] array) {
+        this.array = array;
+        freeIndex = array.length;
     }
 
     public void add(T input) {
@@ -23,7 +31,7 @@ public class DynamicObjectArray<T> {
         array = biggerArray;
     }
 
-    public T remove() {
+    public T removeReturnLast() {
         if (freeIndex <= array.length / 4) {
             decreaseSize();
         }
@@ -71,5 +79,27 @@ public class DynamicObjectArray<T> {
 
     public int length() {
         return freeIndex;
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return this;
+    }
+
+    @Override
+    public boolean hasNext() {
+        return iteratorCounter < freeIndex;
+    }
+
+    @Override
+    public T next() {
+        T result = get(iteratorCounter);
+        iteratorCounter++;
+        return result;
+    }
+
+    @Override
+    public void remove() {
+        throw new UnsupportedOperationException();
     }
 }
