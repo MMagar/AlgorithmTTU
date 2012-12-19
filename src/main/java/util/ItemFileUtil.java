@@ -13,12 +13,16 @@ public class ItemFileUtil {
     private Item[] items;
 
     public ItemFileUtil() {
-        this("","");
+        this("", "");
     }
 
     public ItemFileUtil(String path, String fileIn) {
         this.path = path;
         this.fileIn = fileIn;
+    }
+
+    public ItemFileUtil(String path) {
+        this.path = path;
     }
 
     public void readInput() throws IOException {
@@ -29,9 +33,12 @@ public class ItemFileUtil {
 
     BufferedReader initReader() throws FileNotFoundException {
         BufferedReader reader = null;
+        String fullFilePath = path + "/input/" + fileIn;
         try {
-            reader = new BufferedReader(new FileReader(path + fileIn));
+            reader = new BufferedReader(new FileReader(fullFilePath));
         } catch (FileNotFoundException ignored) {
+            System.out.println("File not found: " + fullFilePath);
+            System.out.println("Looking from root");
         }
         if (reader == null) {
             reader = new BufferedReader(new FileReader(fileIn));
@@ -53,11 +60,12 @@ public class ItemFileUtil {
     }
 
     public void writeResultsToFile(int totalPrice, int totalWeight, Item[] items) throws IOException {
-        FileWriter fileWriter = new FileWriter(path + fileOut);
+        FileWriter fileWriter = new FileWriter(path + "/output/" + fileOut);
         BufferedWriter writer = new BufferedWriter(fileWriter);
         writer.write(totalPrice + " " + totalWeight + "\n");
         for (Item item : items) {
-            writer.write(item.getPrice() + " " + item.getWeight()+ "\n");
+            if (item != null)
+                writer.write(item.getPrice() + " " + item.getWeight() + "\n");
         }
         writer.close();
         System.out.println("Results saved to file: " + fileOut);
@@ -75,6 +83,11 @@ public class ItemFileUtil {
         return fileIn;
     }
 
+    public void setFileName(String name) {
+        setFileIn(name + ".in");
+        setFileOut(name + ".out");
+    }
+
     public void setFileIn(String fileIn) {
         this.fileIn = fileIn;
     }
@@ -84,7 +97,7 @@ public class ItemFileUtil {
     }
 
     public File getFileOut() {
-        return new File(path+fileOut);
+        return new File(path + "/output/" + fileOut);
     }
 
     public int getMaxWeight() {

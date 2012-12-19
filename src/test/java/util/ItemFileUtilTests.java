@@ -13,7 +13,7 @@ public class ItemFileUtilTests {
 
     @Before
     public void setUp() throws Exception {
-        util = new ItemFileUtil("src/test/java/util/", "knapsackInput.in");
+        util = new ItemFileUtil("src/test/java/util", "knapsackInput.in");
     }
 
     @Test

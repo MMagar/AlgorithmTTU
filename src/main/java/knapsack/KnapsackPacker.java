@@ -6,16 +6,16 @@ public class KnapsackPacker {
     private int maxWeight;
     Item[] availableItems;
     private int bestFoundPrice;
+    private int bestFoundWeight;
     private Item[] bestSet;
     private Item[] tempSet;
-    private int bestIndex;
-
 
     public KnapsackPacker() {
     }
 
-    public KnapsackPacker(int maxWeight) {
+    public KnapsackPacker(int maxWeight, Item[] items) {
         this.maxWeight = maxWeight;
+        this.availableItems = items;
     }
 
     public Item[] solve() {
@@ -30,13 +30,13 @@ public class KnapsackPacker {
     }
 
     public void findMostValuableCombination(int itemIndex, int price, int weight) {
-        if(weight <= maxWeight && price > bestFoundPrice) {
+        if (weight <= maxWeight && price > bestFoundPrice) {
             this.bestFoundPrice = price;
-            this.bestIndex = itemIndex;
+            this.bestFoundWeight = weight;
             bestSet = Arrays.copyOf(tempSet, tempSet.length);
         }
-        if(promising(itemIndex)) {
-            int nextItemIndex = itemIndex+1;
+        if (promising(itemIndex)) {
+            int nextItemIndex = itemIndex + 1;
             Item nextItem = availableItems[nextItemIndex];
             tempSet[nextItemIndex] = nextItem;
             findMostValuableCombination(nextItemIndex, price + nextItem.getPrice(), weight + nextItem.getWeight());
@@ -47,7 +47,7 @@ public class KnapsackPacker {
 
     private boolean promising(int index) {
         Knapsack currentSack = new Knapsack(maxWeight, tempSet);
-        if(currentSack.isOverWeightLimit())
+        if (currentSack.isOverWeightLimit())
             return false;
         else {
             int maxPriceWithFactorial = currentSack.getFactorialMaximumPrice(availableItems, index);
@@ -61,5 +61,17 @@ public class KnapsackPacker {
 
     public void setMaxWeight(int maxWeight) {
         this.maxWeight = maxWeight;
+    }
+
+    public int getBestFoundPrice() {
+        return bestFoundPrice;
+    }
+
+    public int getBestFoundWeight() {
+        return bestFoundWeight;
+    }
+
+    public Item[] getBestItemSet() {
+        return bestSet;
     }
 }
