@@ -22,12 +22,26 @@ public class AssignmentsTests {
     }
 
     @Test
+    public void test15() throws Exception {
+        testWithInputFile("15");
+    }
+
+    @Test
+    public void test40() throws Exception {
+        testWithInputFile("40");
+    }
+
+    @Test
     public void test100() throws Exception {
-        fileUtil.setFileName("15");
+        testWithInputFile("100");
+    }
+
+    private void testWithInputFile(String fileName) throws IOException {
+        fileUtil.setFileName(fileName);
 
         assignments.solve();
 
-        compareExpectedWithActualOutput("15");
+        compareExpectedWithActualOutput(fileName);
     }
 
     private void compareExpectedWithActualOutput(String fileName) throws IOException {

@@ -35,8 +35,8 @@ public class KnapsackPacker {
             this.bestFoundWeight = weight;
             bestSet = Arrays.copyOf(tempSet, tempSet.length);
         }
-        if (promising(itemIndex)) {
-            int nextItemIndex = itemIndex + 1;
+        int nextItemIndex = itemIndex + 1;
+        if (promising(itemIndex) && nextItemIndex < availableItems.length) {
             Item nextItem = availableItems[nextItemIndex];
             tempSet[nextItemIndex] = nextItem;
             findMostValuableCombination(nextItemIndex, price + nextItem.getPrice(), weight + nextItem.getWeight());
@@ -46,7 +46,8 @@ public class KnapsackPacker {
     }
 
     private boolean promising(int index) {
-        Knapsack currentSack = new Knapsack(maxWeight, tempSet);
+        Item[] currentItems = Arrays.copyOf(tempSet, index+1);
+        Knapsack currentSack = new Knapsack(maxWeight, currentItems);
         if (currentSack.isOverWeightLimit())
             return false;
         else {

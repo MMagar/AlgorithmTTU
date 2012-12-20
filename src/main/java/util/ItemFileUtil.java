@@ -63,9 +63,6 @@ public class ItemFileUtil {
         Collections.reverse(items);
         Item[] result = new Item[items.size()];
         System.out.println("finished reading file and sorting.");
-        for (Item item : items) {
-            System.out.println(item.toString());
-        }
         return items.toArray(result);
     }
 
