@@ -83,6 +83,7 @@ public class DynamicObjectArray<T> implements Iterable<T>, Iterator<T> {
 
     @Override
     public Iterator<T> iterator() {
+        iteratorCounter = 0;
         return this;
     }
 

@@ -37,4 +37,27 @@ public class KnapsackTests {
 
         assertEquals(5, sack.getFactorialMaximumPrice(items, 0));
     }
+
+    @Test
+    public void factorialWithSomeItemsInKnapsack() throws Exception {
+        Item item1 = new Item(1, 1);
+        Item item2 = new Item(1, 2);
+        Item item3 = new Item(1, 3);
+        Item[] allItems = {item1, item2, item3};
+        Item[] includedItems = {item1, item2};
+        Knapsack sack = new Knapsack(6, includedItems);
+
+        assertEquals(6, sack.getFactorialMaximumPrice(allItems, 1));
+    }
+
+    @Test
+    public void knapsackTotalWeight() throws Exception {
+        Item item1 = new Item(1, 1);
+        Item item2 = new Item(1, 2);
+        Item[] includedItems = {item1, item2};
+        Knapsack sack = new Knapsack(6, includedItems);
+
+        sack.getTotalPrice();
+        assertEquals(3, sack.getTotalWeight());
+    }
 }
