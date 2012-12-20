@@ -36,6 +36,11 @@ public class AssignmentsTests {
         testWithInputFile("100");
     }
 
+    @Test
+    public void test1000a() throws Exception {
+        testWithInputFile("1000a");
+    }
+
     private void testWithInputFile(String fileName) throws IOException {
         fileUtil.setFileName(fileName);
 
