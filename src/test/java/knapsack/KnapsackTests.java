@@ -1,5 +1,6 @@
 package knapsack;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -40,9 +41,9 @@ public class KnapsackTests {
 
     @Test
     public void factorialWithSomeItemsInKnapsack() throws Exception {
-        Item item1 = new Item(1, 1);
-        Item item2 = new Item(1, 2);
-        Item item3 = new Item(1, 3);
+        Item item1 = new Item(2, 1);
+        Item item2 = new Item(2, 2);
+        Item item3 = new Item(2, 3);
         Item[] allItems = {item1, item2, item3};
         Item[] includedItems = {item1, item2};
         Knapsack sack = new Knapsack(6, includedItems);
