@@ -55,9 +55,15 @@ public class MazeFileUtil {
         return maze;
     }
 
-    public void writeResultsToFile() throws IOException {
+    public void writeResultsToFile(char maze[][]) throws IOException {
         FileWriter fileWriter = new FileWriter(path + "/output/" + fileName + ".out");
         BufferedWriter writer = new BufferedWriter(fileWriter);
+        for (int row = 0; row< dimension * 2 + 1; row++) {
+            for (int column = 0; column < dimension * 2 + 1; column++) {
+                writer.write(maze[column][row]);
+            }
+            writer.write("\n");
+        }
         writer.write("\n");
         writer.close();
         System.out.println("Results saved to file: " + fileName + ".out");
