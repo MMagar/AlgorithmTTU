@@ -66,7 +66,7 @@ public class MazeFileUtil {
         }
         writer.write("\n");
         writer.close();
-        System.out.println("Results saved to file: " + fileName + ".out");
+        System.out.println("Results saved to file: " + path + "/output/" + fileName + ".out");
     }
 
     public void setFileName(String fileName) {
