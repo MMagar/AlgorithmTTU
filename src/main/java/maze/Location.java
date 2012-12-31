@@ -11,7 +11,7 @@ public class Location {
 
     @Override
     public boolean equals(Object obj) {
-        if(obj instanceof Location) {
+        if (obj instanceof Location) {
             Location other = (Location) obj;
             return column == other.column && row == other.row;
         }
@@ -19,17 +19,17 @@ public class Location {
     }
 
     public Location getLocationAtDirection(Direction direction) {
-        switch (direction){
+        switch (direction) {
             case UP:
-                return new Location(column, row-1);
+                return new Location(column, row - 1);
             case DOWN:
-                return new Location(column, row+1);
+                return new Location(column, row + 1);
             case LEFT:
-                return new Location(column-1, row);
+                return new Location(column - 1, row);
             case RIGHT:
-                return new Location(column+1, row);
+                return new Location(column + 1, row);
             default:
-                return new Location(column, row-1);
+                return new Location(column, row - 1);
         }
     }
 
