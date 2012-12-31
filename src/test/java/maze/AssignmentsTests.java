@@ -20,24 +20,34 @@ public class AssignmentsTests {
     }
 
     @Test
-    public void testA5() throws Exception {
-        assignments.solve("a5");
-
-        compareExpectedWithActualOutput("a5");
+    public void testMazesOfTypeA() throws Exception {
+        testWithInput("a5");
+        testWithInput("a7");
+        testWithInput("a10");
+        testWithInput("a15");
+        testWithInput("a20");
+        testWithInput("a30");
+        testWithInput("a40");
+        testWithInput("a50");
+        testWithInput("a100");
+        testWithInput("a200");
     }
 
     @Test
-    public void testA20() throws Exception {
-        assignments.solve("a20");
-
-        compareExpectedWithActualOutput("a20");
+    public void testMazesOfTypeB() throws Exception {
+        testWithInput("h10");
+        testWithInput("h15");
+        testWithInput("h20");
+        testWithInput("h30");
+        testWithInput("h40");
+        testWithInput("h50");
+        testWithInput("h100");
     }
 
-    @Test
-    public void testH10() throws Exception {
-        assignments.solve("h10");
+    private void testWithInput(String fileName) throws IOException {
+        assignments.solve(fileName);
 
-        compareExpectedWithActualOutput("h10");
+        compareExpectedWithActualOutput(fileName);
     }
 
     private void compareExpectedWithActualOutput(String fileName) throws IOException {
