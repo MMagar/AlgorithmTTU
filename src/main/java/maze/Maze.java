@@ -3,8 +3,10 @@ package maze;
 import java.util.ArrayList;
 
 public class Maze {
-    public static final char WALL_CHARACTER = 'X';
-    public static final char WALKED_PATH_CHARACTER = '*';
+    public static final char WALL = 'X';
+    public static final char PATH_TO_FINISH = '*';
+    public static final char BEGINNING = 'B';
+    public static final char FINISH = 'F';
     private Location beginning;
     private Location finish;
     private char[][] maze;
@@ -26,10 +28,10 @@ public class Maze {
         for (int column = 0; column < dimension; column++) {
             for (int row = 0; row < dimension; row++) {
                 character = getValueAtLocation(column, row);
-                if (character == 'B') {
+                if (character == BEGINNING) {
                     beginning = new Location(column, row);
                     if (finish != null) return;
-                } else if (character == 'F') {
+                } else if (character == FINISH) {
                     finish = new Location(column, row);
                     if (beginning != null) return;
                 }
@@ -140,11 +142,11 @@ public class Maze {
     }
 
     private void setCoordinateAsWalked(int x, int y) {
-        maze[x][y] = WALKED_PATH_CHARACTER;
+        maze[x][y] = PATH_TO_FINISH;
     }
 
     public boolean isWalkablePath(int x, int y) {
-        return maze[x][y] != WALL_CHARACTER;
+        return maze[x][y] != WALL;
     }
 
     public void setDimension(int dimension) {
