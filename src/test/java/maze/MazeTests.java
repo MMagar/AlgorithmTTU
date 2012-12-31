@@ -33,22 +33,10 @@ public class MazeTests {
         maze.setMaze(getSmallMaze());
         maze.setDimension(5);
 
-        maze.findBeginningAndFinishLocation();
+        maze.findBeginningAndFinishLocations();
 
         assertTrue(new Location(0,4).equals(maze.getBeginning()));
         assertTrue(new Location(4,0).equals(maze.getFinish()));
-    }
-
-    @Test
-    public void pickShorterPath() throws Exception {
-        ArrayList<Location> longerPath = new ArrayList<Location>();
-        ArrayList<Location> shorterPath = new ArrayList<Location>();
-        ArrayList<Location> invalidPath = null;
-        longerPath.add(new Location(1, 1));
-        longerPath.add(new Location(1, 2));
-        shorterPath.add(new Location(1, 2));
-
-        assertEquals(shorterPath, maze.pickShortestPath(longerPath, shorterPath, invalidPath));
     }
 
     @Test

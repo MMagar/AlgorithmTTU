@@ -14,14 +14,15 @@ public class Maze {
     ArrayList<Location> bestFoundPath;
 
     public char[][] solve(char[][] maze) {
+        bestFoundPath = null;
         this.maze = maze;
-        findBeginningAndFinishLocation();
-        bestFoundPath = findShortestPathFromBeginningToFinish();
-        drawPathToMaze();
+        findBeginningAndFinishLocations();
+        findShortestPathFromBeginningToFinish();
+        drawBestPathToMaze();
         return maze;
     }
 
-    void findBeginningAndFinishLocation() {
+    void findBeginningAndFinishLocations() {
         char character;
         beginning = null;
         finish = null;
@@ -43,18 +44,18 @@ public class Maze {
         return maze[column * 2 + 1][row * 2 + 1];
     }
 
-    private ArrayList<Location> findShortestPathFromBeginningToFinish() {
+    private void findShortestPathFromBeginningToFinish() {
         ArrayList<Location> path = new ArrayList<Location>();
         path.add(beginning);
-        return findFinish(beginning, path);
+        findFinish(beginning, path);
     }
 
-    private ArrayList<Location> findFinish(Location location, ArrayList<Location> passedLocations) {
-        if (isFinish(location))
-            return passedLocations;
-        if(isLongerThanCurrentBestFoundPath(passedLocations))
-            return null;
-        return findFinishByLookingAtAllDirections(location, passedLocations);
+    private void findFinish(Location location, ArrayList<Location> passedLocations) {
+        if (isFinish(location)) {
+            bestFoundPath = passedLocations;
+        }
+        if(!isLongerThanCurrentBestFoundPath(passedLocations))
+            findFinishByLookingAtAllDirections(location, passedLocations);
     }
 
     private boolean isFinish(Location location) {
@@ -65,39 +66,20 @@ public class Maze {
         return bestFoundPath != null && bestFoundPath.size() < currentPath.size();
     }
 
-    private ArrayList<Location> findFinishByLookingAtAllDirections(Location location, ArrayList<Location> passedLocations) {
-        ArrayList<Location> upPath = findFinishInDirection(Direction.UP, location, passedLocations);
-        ArrayList<Location> downPath = findFinishInDirection(Direction.DOWN, location, passedLocations);
-        ArrayList<Location> leftPath = findFinishInDirection(Direction.LEFT, location, passedLocations);
-        ArrayList<Location> rightPath = findFinishInDirection(Direction.RIGHT, location, passedLocations);
-        return pickShortestPath(upPath, downPath, leftPath, rightPath);
+    private void findFinishByLookingAtAllDirections(Location location, ArrayList<Location> passedLocations) {
+        findFinishInDirection(Direction.UP, location, passedLocations);
+        findFinishInDirection(Direction.DOWN, location, passedLocations);
+        findFinishInDirection(Direction.LEFT, location, passedLocations);
+        findFinishInDirection(Direction.RIGHT, location, passedLocations);
     }
 
-    private ArrayList<Location> findFinishInDirection(Direction direction, Location from, ArrayList<Location> passedLocations) {
+    private void findFinishInDirection(Direction direction, Location from, ArrayList<Location> passedLocations) {
         Location nextLocation = from.getLocationAtDirection(direction);
         if (canGoAtDirection(direction, from) && !passedLocations.contains(nextLocation)) {
             ArrayList<Location> copyOfPastLocations = (ArrayList<Location>) passedLocations.clone();
             copyOfPastLocations.add(nextLocation);
-            return findFinish(nextLocation, copyOfPastLocations);
+            findFinish(nextLocation, copyOfPastLocations);
         }
-        return null;
-    }
-
-    ArrayList<Location> pickShortestPath(ArrayList<Location>... paths) {
-        ArrayList<Location> bestPath = paths[0];
-        for (int i = 1; i < paths.length; i++) {
-            bestPath = pickShorterPathOfTwo(bestPath, paths[i]);
-        }
-        return bestPath;
-    }
-
-    private ArrayList<Location> pickShorterPathOfTwo(ArrayList<Location> firstPath, ArrayList<Location> secondPath) {
-        if(firstPath == null)
-            return secondPath;
-        else if(secondPath == null)
-            return firstPath;
-        else
-            return firstPath.size() > secondPath.size() ? secondPath : firstPath;
     }
 
     public boolean canGoAtDirection(Direction direction, Location from) {
@@ -115,7 +97,7 @@ public class Maze {
         }
     }
 
-    private void drawPathToMaze() {
+    private void drawBestPathToMaze() {
         Location previous = bestFoundPath.remove(0);
         Location finish = bestFoundPath.remove(bestFoundPath.size() - 1);
         for (Location location : bestFoundPath) {
