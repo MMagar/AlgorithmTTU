@@ -50,14 +50,19 @@ public class Maze {
     }
 
     private ArrayList<Location> findFinish(Location location, ArrayList<Location> passedLocations) {
-        if (isFinish(location)) {
+        if (isFinish(location))
             return passedLocations;
-        }
+        if(isLongerThanCurrentBestFoundPath(passedLocations))
+            return null;
         return findFinishByLookingAtAllDirections(location, passedLocations);
     }
 
     private boolean isFinish(Location location) {
         return finish.equals(location);
+    }
+
+    private boolean isLongerThanCurrentBestFoundPath(ArrayList<Location> currentPath) {
+        return bestFoundPath != null && bestFoundPath.size() < currentPath.size();
     }
 
     private ArrayList<Location> findFinishByLookingAtAllDirections(Location location, ArrayList<Location> passedLocations) {
