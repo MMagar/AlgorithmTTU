@@ -1,4 +1,4 @@
-package util;
+package maze;
 
 import java.io.*;
 
@@ -75,5 +75,9 @@ public class MazeFileUtil {
 
     public char[][] getMaze() {
         return maze;
+    }
+
+    public int getDimension() {
+        return dimension;
     }
 }

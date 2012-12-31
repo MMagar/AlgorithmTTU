@@ -3,7 +3,6 @@ package maze;
 import java.util.ArrayList;
 
 public class Maze {
-    public static final char WALKED_PATH_CHARACTER = '*';
     public static final char WALL_CHARACTER = 'X';
     private Location beginning;
     private Location finish;
@@ -15,19 +14,7 @@ public class Maze {
         this.maze = maze;
         findBeginningAndFinishLocation();
         bestFoundPath = findShortestPathFromBeginningToFinish();
-        drawBestFoundPathToMaze();
         return maze;
-    }
-
-    private void drawBestFoundPathToMaze() {
-        Location previous = bestFoundPath.remove(0);
-        Location finish = bestFoundPath.remove(bestFoundPath.size()-1);
-        for (Location location : bestFoundPath) {
-            setValueAtLocation(location, WALKED_PATH_CHARACTER);
-            setValueBetweenLocations(previous, location, WALKED_PATH_CHARACTER);
-            previous = location;
-        }
-        setValueBetweenLocations(previous, finish, WALKED_PATH_CHARACTER);
     }
 
     void findBeginningAndFinishLocation() {
@@ -50,26 +37,6 @@ public class Maze {
 
     char getValueAtLocation(int column, int row) {
         return maze[column * 2 + 1][row * 2 + 1];
-    }
-
-    void setValueBetweenLocations(Location start, Location end, char newValue) {
-        if(start.getX() == end.getX()) {
-            if(start.getY() < end.getY()) {
-                maze[start.getX()][start.getY()+1] = newValue;
-            } else {
-                maze[start.getX()][start.getY()-1] = newValue;
-            }
-        } else {
-            if(start.getX() < end.getX()) {
-                maze[start.getX()+1][start.getY()] = newValue;
-            } else {
-                maze[start.getX()-1][start.getY()] = newValue;
-            }
-        }
-    }
-
-    void setValueAtLocation(Location location, char newValue) {
-        maze[location.getX()][location.getY()] = newValue;
     }
 
     private ArrayList<Location> findShortestPathFromBeginningToFinish() {

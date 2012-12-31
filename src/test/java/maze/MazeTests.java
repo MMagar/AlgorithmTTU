@@ -2,7 +2,6 @@ package maze;
 
 import org.junit.Before;
 import org.junit.Test;
-import util.MazeFileUtil;
 
 import java.io.IOException;
 import java.util.ArrayList;
