@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Maze {
     public static final char WALKED_PATH_CHARACTER = '*';
+    public static final char WALL_CHARACTER = 'X';
     private Location beginning;
     private Location finish;
     private char[][] maze;
@@ -126,16 +127,20 @@ public class Maze {
     public boolean canGoAtDirection(Direction direction, Location from) {
         switch (direction) {
             case UP:
-                return maze[from.getX()][from.getY() - 1] == ' ';
+                return isWalkablePath(from.getX(), from.getY() - 1);
             case DOWN:
-                return maze[from.getX()][from.getY() + 1] == ' ';
+                return isWalkablePath(from.getX(), from.getY() + 1);
             case LEFT:
-                return maze[from.getX() - 1][from.getY()] == ' ';
+                return isWalkablePath(from.getX() - 1, from.getY());
             case RIGHT:
-                return maze[from.getX() + 1][from.getY()] == ' ';
+                return isWalkablePath(from.getX() + 1, from.getY());
             default:
-                return maze[from.getX()][from.getY() - 1] == ' ';
+                return isWalkablePath(from.getX(), from.getY() - 1);
         }
+    }
+
+    public boolean isWalkablePath(int x, int y) {
+        return maze[x][y] != WALL_CHARACTER;
     }
 
     public void setDimension(int dimension) {
