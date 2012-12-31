@@ -10,16 +10,25 @@ public class Maze {
     private Location beginning;
     private Location finish;
     private char[][] maze;
-    private int dimension;
+    private Integer dimension = null;
     ArrayList<Location> bestFoundPath;
 
     public char[][] solve(char[][] maze) {
         bestFoundPath = null;
         this.maze = maze;
+        if (dimension == null) { //moodle.ee tests don't set the dimension so it has to be calculated (otherwise read from a file)
+            calculateMazeDimension();
+        }
         findBeginningAndFinishLocations();
         findShortestPathFromBeginningToFinish();
         drawBestPathToMaze();
+        dimension = null;
         return maze;
+    }
+
+    private void calculateMazeDimension() {
+        int length = maze.length / 2;
+        setDimension(length);
     }
 
     void findBeginningAndFinishLocations() {
@@ -50,12 +59,11 @@ public class Maze {
         findFinish(beginning, path);
     }
 
-    private void findFinish(Location location, ArrayList<Location> passedLocations) {
-        if (isFinish(location)) {
+    private void findFinish(Location currentLocation, ArrayList<Location> passedLocations) {
+        if (isFinish(currentLocation))
             bestFoundPath = passedLocations;
-        }
-        if(!isLongerThanCurrentBestFoundPath(passedLocations))
-            findFinishByLookingAtAllDirections(location, passedLocations);
+        if (!isLongerThanCurrentBestFoundPath(passedLocations))
+            findFinishByLookingAtAllDirections(currentLocation, passedLocations);
     }
 
     private boolean isFinish(Location location) {
@@ -66,11 +74,11 @@ public class Maze {
         return bestFoundPath != null && bestFoundPath.size() < currentPath.size();
     }
 
-    private void findFinishByLookingAtAllDirections(Location location, ArrayList<Location> passedLocations) {
-        findFinishInDirection(Direction.UP, location, passedLocations);
-        findFinishInDirection(Direction.DOWN, location, passedLocations);
-        findFinishInDirection(Direction.LEFT, location, passedLocations);
-        findFinishInDirection(Direction.RIGHT, location, passedLocations);
+    private void findFinishByLookingAtAllDirections(Location currentLocation, ArrayList<Location> passedLocations) {
+        findFinishInDirection(Direction.UP, currentLocation, passedLocations);
+        findFinishInDirection(Direction.DOWN, currentLocation, passedLocations);
+        findFinishInDirection(Direction.LEFT, currentLocation, passedLocations);
+        findFinishInDirection(Direction.RIGHT, currentLocation, passedLocations);
     }
 
     private void findFinishInDirection(Direction direction, Location from, ArrayList<Location> passedLocations) {
@@ -152,3 +160,4 @@ public class Maze {
         return finish;
     }
 }
+

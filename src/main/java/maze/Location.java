@@ -9,15 +9,6 @@ public class Location {
         this.row = row;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj instanceof Location) {
-            Location other = (Location) obj;
-            return column == other.column && row == other.row;
-        }
-        return false;
-    }
-
     public Location getLocationAtDirection(Direction direction) {
         switch (direction) {
             case UP:
@@ -39,5 +30,14 @@ public class Location {
 
     public int getY() {
         return row * 2 + 1;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Location) {
+            Location other = (Location) obj;
+            return column == other.column && row == other.row;
+        }
+        return false;
     }
 }
