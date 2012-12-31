@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Maze {
     public static final char WALL_CHARACTER = 'X';
+    public static final char WALKED_PATH_CHARACTER = '*';
     private Location beginning;
     private Location finish;
     private char[][] maze;
@@ -14,6 +15,7 @@ public class Maze {
         this.maze = maze;
         findBeginningAndFinishLocation();
         bestFoundPath = findShortestPathFromBeginningToFinish();
+        drawPathToMaze();
         return maze;
     }
 
@@ -104,6 +106,41 @@ public class Maze {
             default:
                 return isWalkablePath(from.getX(), from.getY() - 1);
         }
+    }
+
+    private void drawPathToMaze() {
+        Location previous = bestFoundPath.remove(0);
+        Location finish = bestFoundPath.remove(bestFoundPath.size() - 1);
+        for (Location location : bestFoundPath) {
+            setLocationAsWalkedPath(location);
+            setAsWakedPathBetweenLocations(previous, location);
+            previous = location;
+        }
+        setAsWakedPathBetweenLocations(previous, finish);
+    }
+
+    void setLocationAsWalkedPath(Location location) {
+        setCoordinateAsWalked(location.getX(), location.getY());
+    }
+
+    void setAsWakedPathBetweenLocations(Location start, Location end) {
+        if (start.getX() == end.getX()) {
+            if (start.getY() < end.getY()) {
+                setCoordinateAsWalked(start.getX(), start.getY() + 1);
+            } else {
+                setCoordinateAsWalked(start.getX(), start.getY() - 1);
+            }
+        } else {
+            if (start.getX() < end.getX()) {
+                setCoordinateAsWalked(start.getX() + 1, start.getY());
+            } else {
+                setCoordinateAsWalked(start.getX() - 1, start.getY());
+            }
+        }
+    }
+
+    private void setCoordinateAsWalked(int x, int y) {
+        maze[x][y] = WALKED_PATH_CHARACTER;
     }
 
     public boolean isWalkablePath(int x, int y) {
