@@ -27,8 +27,7 @@ public class Maze {
     }
 
     private void calculateMazeDimension() {
-        int length = maze.length / 2;
-        setDimension(length);
+        setDimension(maze.length / 2);
     }
 
     void findBeginningAndFinishLocations() {
